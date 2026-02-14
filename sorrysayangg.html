@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For My Dearest Shaila</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --deep-black: #050000;
+            --maroon: #2d0000;
+            /* Gelap sikit lagi untuk lebih kontra */
+            --bright-red: #ff2d2d;
+            --text-white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            /* Buang kotak biru bila tekan di mobile */
+        }
+
+        body {
+            background: linear-gradient(180deg, var(--deep-black) 0%, var(--maroon) 50%, var(--deep-black) 100%);
+            color: var(--text-white);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Container utama supaya content tak rapat sangat dengan tepi screen */
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .message-label {
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--bright-red);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .name-header {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 12vw, 5.5rem);
+            /* Saiz automatik ikut screen */
+            font-weight: 700;
+            letter-spacing: 6px;
+            text-shadow: 0 0 30px rgba(255, 45, 45, 0.4);
+            animation: slideDown 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes slideDown {
+            0% {
+                transform: translateY(-80px);
+                opacity: 0;
+                filter: blur(10px);
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+                filter: blur(0);
+            }
+        }
+
+        .scroll-hint {
+            margin-top: 40px;
+            font-style: italic;
+            font-size: 0.85rem;
+            opacity: 0.5;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* --- Letter Section --- */
+        .letter-section {
+            padding: 100px 0;
+        }
+
+        .letter-date {
+            font-size: 0.8rem;
+            text-align: right;
+            margin-bottom: 50px;
+            letter-spacing: 2px;
+            color: var(--bright-red);
+            font-weight: 600;
+        }
+
+        .letter-content p {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.1rem, 4vw, 1.4rem);
+            margin-bottom: 35px;
+            color: rgba(255, 255, 255, 0.9);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+
+        .letter-content p.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Question Section --- */
+        .question-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .heart {
+            font-size: clamp(40px, 10vw, 60px);
+            filter: drop-shadow(0 0 15px var(--bright-red));
+            animation: heartbeat 1.2s infinite;
+            margin-bottom: 25px;
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+
+            20% {
+                transform: scale(1.2);
+            }
+
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        .question-text {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 6vw, 2.5rem);
+            margin-bottom: 50px;
+            max-width: 500px;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: row;
+            /* Kekalkan horizontal pada mobile */
+            gap: 15px;
+            position: relative;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            min-height: 100px;
+            /* Ruang untuk butang NO melompat */
+        }
+
+        button {
+            padding: 16px 35px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        #yesBtn {
+            background: var(--text-white);
+            color: var(--deep-black);
+            z-index: 2;
+        }
+
+        #noBtn {
+            background: var(--glass);
+            color: var(--text-white);
+            backdrop-filter: blur(5px);
+            z-index: 1;
+            /* Transition lebih laju untuk NO button */
+            transition: all 0.1s ease;
+        }
+
+        /* Media Query untuk screen sangat kecil */
+        @media (max-width: 380px) {
+            .name-header {
+                font-size: 2.2rem;
+            }
+
+            button {
+                padding: 12px 25px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <section class="hero">
+            <div class="message-label">A message, just for you</div>
+            <h1 class="name-header">NAZURAH</h1>
+            <div class="scroll-hint">scroll down to read 🌷</div>
+        </section>
+
+        <section class="letter-section">
+            <div class="letter-date">FEBRUARY 15, 2026</div>
+            <div class="letter-content">
+                <p><strong>My dearest Mazurah Azyyati,</strong></p>
+                <p>I know i'm not the best at expressing my feelings, but i want you to know that i love you more than
+                    words can say. You are one of the most special person in my life, and i can't imagine my life
+                    without
+                    you.
+                </p>
+                <p>There are things in this world that are difficult to say out loud — not because they aren't true, but
+                    because there are some things that are hard to express in words. </p>
+                <p>Maybe for me its a small matter but for you its a big deal, and i'm sorry for that. I know i hurt you
+                    and i'm really sorry for that. </p>
+                <p>I know you're actually not okay right now eventho you said that you're already okay,but i already
+                    know you too well sayangg.</p>
+                <p>but just to let you know i got no intention to hurt you at all, to hurt your feelings will never be
+                    my intention .
+                <p>i really love you so much.</p>
+
+                <p>from your sweetheart, Fareez Danial </p>
+                </p>
+            </div>
+        </section>
+
+        <section class="question-section">
+            <div id="interactiveArea">
+                <div class="heart">❤️</div>
+                <div class="question-text">will you forgive me sayang ???</div>
+                <div class="btn-group" id="btnArea"
+                    style="display: flex; gap: 20px; justify-content: center; align-items: center; min-height: 200px; width: 100%; position: relative;">
+                    <button id="yesBtn" onclick="celebrate()"
+                        style="background: #fff; color: #000; min-width: 100px; z-index: 100;">YES</button>
+                    <button id="noBtn" onmouseover="handleNo()" ontouchstart="handleNo()" onclick="handleNo()"
+                        style="background: #444; color: #fff; border: 2px solid #888; min-width: 100px; z-index: 99; position: relative;">
+                        NO
+                    </button>
+                </div>
+            </div>
+
+            <div id="successPart" style="display: none; text-align: center;">
+                <div class="heart">💖</div>
+                <h2 class="question-text" style="color: #ff2d2d;">I LOVE YOU SO MUCH SAYANGGGG! ❤️</h2>
+                <p>Thank you for forgiving me hehe.</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // --- Logic Larian yang Lebih Selamat ---
+        let scaleFactor = 1;
+        let phrases = ["Pleasee? 🥺", "sampai hatii 😭", "Jangan la merajuk 😭", "I love you! ❤️", "hehe kena yes jugak 😍"];
+        let pIndex = 0;
+
+        function handleNo() {
+            const noBtn = document.getElementById('noBtn');
+            const yesBtn = document.getElementById('yesBtn');
+
+            // Tukar ke FIXED hanya selepas disentuh pertama kali
+            noBtn.style.position = 'fixed';
+
+            // Guna margin supaya butang tak lari betul-betul ke bucu screen
+            const padding = 100;
+            const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+            const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+            const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
+
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+
+            // Besarkan YES sikit-sikit
+            if (scaleFactor < 2.0) {
+                scaleFactor += 0.1;
+                yesBtn.style.transform = `scale(${scaleFactor})`;
+                yesBtn.innerText = phrases[pIndex];
+                pIndex = (pIndex + 1) % phrases.length;
+            }
+        }
+
+        function celebrate() {
+            document.getElementById('interactiveArea').style.display = 'none';
+            document.getElementById('successPart').style.display = 'block';
+        }
+
+        // Kekalkan Scroll Reveal Logic yang sedia ada
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('reveal'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.letter-content p').forEach(p => observer.observe(p));
+    </script>
+</body>
+
+</html>
